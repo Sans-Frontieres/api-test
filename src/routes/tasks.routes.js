@@ -4,10 +4,10 @@ const controller = require("../controllers/tasks.controllers");
 const router = Router();
 
 router.get("/", controller.getAll);
-// router.get("/count", controller.count);
-// router.get("/:id", controller.findByID);
+router.get("/count", controller.count);
+router.get("/:id", controller.findByID);
 
-// router.post("/", controller.create);
+router.post("/", controller.create);
 
 // router.put("/:id", controller.update);
 

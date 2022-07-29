@@ -2,3 +2,19 @@
 
 ### Todas las tareas
 GET {{api}}
+
+### Cantidad de tareas
+GET {{api}}/count
+###
+
+### Busqueda de tareas
+GET {{api}}/0651a72e-2e94-4410-bcdd-509d8de48833
+###
+
+POST {{api}}
+Content-Type: application/json
+
+{
+    "title": "Tercera tarea creada.",
+    "description": "Deberia dejar de tomar mates."
+}

@@ -11,9 +11,7 @@ const createConnection = async () => {
   db = lowdb(adapter);
   await db
     .defaults({
-      tasks: [
-        { title: "Primera tarea", description: "Debo crear una api rest." },
-      ],
+      tasks: [],
     })
     .write();
 

@@ -1,8 +1,19 @@
 {
   "tasks": [
     {
-      "title": "Primera tarea",
-      "description": "Debo crear una api rest."
+      "id": "a6982c49-085d-4407-9dbc-2cae5a74aa6b",
+      "title": "Primera tarea creada.",
+      "description": "Mañana no hay clase."
+    },
+    {
+      "id": "0651a72e-2e94-4410-bcdd-509d8de48833",
+      "title": "Segunda tarea creada.",
+      "description": "Levantar una api rest de tareas."
+    },
+    {
+      "id": "9eff851d-99a3-401e-b3f5-f24b85e1f0af",
+      "title": "Tercera tarea creada.",
+      "description": "Deberia dejar de tomar mates."
     }
   ]
 }
