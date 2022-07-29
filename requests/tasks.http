@@ -1,0 +1,4 @@
+@api = http://localhost:4000/api/v1/tasks
+
+### Todas las tareas
+GET {{api}}

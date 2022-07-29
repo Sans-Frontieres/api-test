@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon ./src/index.js --ignore db.json"
+    "dev": "nodemon ./src/server --ignore db.json"
   },
   "repository": {
     "type": "git",

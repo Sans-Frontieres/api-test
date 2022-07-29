@@ -17,7 +17,7 @@ const createConnection = async () => {
     })
     .write();
 
-  console.log("Database: ", db.get("tasks").value());
+  // console.log("Database: ", db.get("tasks").value());
 };
 
 const getConnection = () => db;
