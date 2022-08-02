@@ -11,10 +11,22 @@ GET {{api}}/count
 GET {{api}}/0651a72e-2e94-4410-bcdd-509d8de48833
 ###
 
-POST {{api}}
+POST {{api}}/9eff851d-99a3-401e-b3f5-f24b85e1f0af
 Content-Type: application/json
 
 {
     "title": "Tercera tarea creada.",
     "description": "Deberia dejar de tomar mates."
 }
+###
+
+PUT {{api}}/9eff851d-99a3-401e-b3f5-f24b85e1f0af
+Content-Type: application/json
+
+{
+    "title": "Tarea actualizada.",
+    "description": "Wow actualice la tarea."
+}
+###
+
+DELETE {{api}}/9eff851d-99a3-401e-b3f5-f24b85e1f0af
