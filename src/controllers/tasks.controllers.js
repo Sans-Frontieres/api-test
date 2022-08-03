@@ -1,11 +1,6 @@
 const v4 = require("uuid").v4;
 const { getConnection } = require("../server/db");
 
-/**
- *
- * @param {*} __
- * @param {*} res
- */
 const getAll = async (__, res) => {
   const tasks = await getConnection().get("tasks").value();
   res.json({ tasks, count: tasks?.length });
