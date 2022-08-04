@@ -3,4 +3,9 @@ const { server, app } = require("../../src/server");
 
 const api = supertest(app);
 
-module.exports = { api, server };
+const task = {
+  title: "Tarea de prueba.",
+  description: "Tarea creada para los test de Mocha y Chai.",
+};
+
+module.exports = { api, server, task };

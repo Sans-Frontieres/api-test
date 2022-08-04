@@ -14,7 +14,7 @@ app.use(morgan("dev"));
 
 app.use("/api/v1/tasks", tasksRoutes);
 
-app.use("/api/v1", (__, res) => {
+app.use("/api/v1", (req, res, next) => {
   res.status(200).json({ message: "Respuesta al navegador" });
 });
 
