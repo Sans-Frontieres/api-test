@@ -16,7 +16,7 @@ const findByID = async (req, res) => {
 
   const task = await getConnection().get("tasks").find({ id }).value();
 
-  if (!task) return res.status(404).json({ error: "Tarea no encontrada." });
+  if (!task) return res.status(404).json({ message: "Tarea no encontrada." });
 
   res.status(200).json(task);
 };
@@ -63,7 +63,7 @@ const remove = async (req, res) => {
 
   await db.get("tasks").remove({ id }).write();
 
-  res.status(202).json({ id });
+  res.status(202).json(id);
 };
 
 module.exports = { getAll, create, count, findByID, update, remove };

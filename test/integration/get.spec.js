@@ -10,7 +10,7 @@ beforeEach((done) => {
   done();
 });
 
-describe('GET "tasks/" lista de tareas. - (Integration)', () => {
+describe.skip('GET "tasks/" lista de tareas. - (Integration)', () => {
   it("La api retorna un status 200", async () => {
     const response = await api.get("/api/v1/tasks/");
 
@@ -35,7 +35,7 @@ describe('GET "tasks/" lista de tareas. - (Integration)', () => {
   });
 });
 
-describe('GET "tasks/count" cantidad de tareas. - (Integration)', () => {
+describe.skip('GET "tasks/count" cantidad de tareas. - (Integration)', () => {
   it("La api retorna un status 200", async () => {
     const response = await api.get("/api/v1/tasks/count");
 
@@ -54,6 +54,42 @@ describe('GET "tasks/count" cantidad de tareas. - (Integration)', () => {
     const response = await api.get("/api/v1/tasks/");
 
     expect(response.body.count).to.equal(1);
+  });
+});
+
+describe('GET "tasks/:id" Busqueda de tareas por ID. - (Integration)', () => {
+  it("Si la tarea no existe retorna un status 404", async () => {
+    const idInexistente = "jhgf-9087-456247-hahal";
+    const response = await api.get(`/api/v1/tasks/${idInexistente}`);
+
+    expect(response).to.have.status(404);
+  });
+
+  it("Si la tarea no existe retorna un mensage de error.", async () => {
+    const idInexistente = "jhgf-9087-456247-hahal";
+
+    const response = await api.get(`/api/v1/tasks/${idInexistente}`);
+
+    expect(response.body.message).to.not.be.undefined;
+  });
+
+  it("Si la tarea existe retorna un status 200.", async () => {
+    const result = await api.post("/api/v1/tasks/").send(task);
+    const id = result.body;
+
+    const response = await api.get(`/api/v1/tasks/${id}`);
+
+    expect(response).to.have.status(200);
+  });
+
+  it("Si la tarea existe es devuelta dentro del body.", async () => {
+    const result = await api.post("/api/v1/tasks/").send(task);
+    const id = result.body;
+
+    const response = await api.get(`/api/v1/tasks/${id}`);
+
+    expect(response.body).to.not.be.undefined;
+    expect(response.body.id).to.equal(id);
   });
 });
 
