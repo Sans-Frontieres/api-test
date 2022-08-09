@@ -11,7 +11,7 @@ GET {{api}}/count
 GET {{api}}/0651a72e-2e94-4410-bcdd-509d8de48833
 ###
 
-POST {{api}}/9eff851d-99a3-401e-b3f5-f24b85e1f0af
+POST {{api}}
 Content-Type: application/json
 
 {
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 ###
 
-PUT {{api}}/9eff851d-99a3-401e-b3f5-f24b85e1f0af
+PUT {{api}}/9e
 Content-Type: application/json
 
 {

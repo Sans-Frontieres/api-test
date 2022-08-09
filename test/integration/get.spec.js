@@ -10,7 +10,7 @@ beforeEach((done) => {
   done();
 });
 
-describe.skip('GET "tasks/" lista de tareas. - (Integration)', () => {
+describe('GET "tasks/" lista de tareas. - (Integration)', () => {
   it("La api retorna un status 200", async () => {
     const response = await api.get("/api/v1/tasks/");
 
@@ -35,7 +35,7 @@ describe.skip('GET "tasks/" lista de tareas. - (Integration)', () => {
   });
 });
 
-describe.skip('GET "tasks/count" cantidad de tareas. - (Integration)', () => {
+describe('GET "tasks/count" cantidad de tareas. - (Integration)', () => {
   it("La api retorna un status 200", async () => {
     const response = await api.get("/api/v1/tasks/count");
 
