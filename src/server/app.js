@@ -1,7 +1,6 @@
-// import express from 'express'
-const express = require("express");
-const morgan = require("morgan");
-const tasksRoutes = require("../routes/tasks.routes");
+import express from "express";
+import morgan from "morgan";
+import tasksRoutes from "../routes/tasks.routes.js";
 
 const app = express();
 
@@ -18,5 +17,4 @@ app.use("/api/v1", (req, res, next) => {
   res.status(200).json({ message: "Respuesta al navegador" });
 });
 
-module.exports = app;
-// export default app
+export default app;

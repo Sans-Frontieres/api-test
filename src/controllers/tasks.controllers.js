@@ -1,17 +1,18 @@
-const v4 = require("uuid").v4;
-const { getConnection } = require("../server/db");
+import { v4 } from "uuid";
+import * as Task from "../model/Task.js";
+import { getConnection } from "../server/db.js";
 
-const getAll = async (__, res) => {
-  const tasks = await getConnection().get("tasks").value();
+export const getAll = async (__, res) => {
+  const tasks = await Task.all();
   res.json({ tasks, count: tasks?.length });
 };
 
-const count = async (__, res) => {
+export const count = async (__, res) => {
   const tasks = await getConnection().get("tasks").value();
   res.json({ count: tasks?.length });
 };
 
-const findByID = async (req, res) => {
+export const findByID = async (req, res) => {
   const id = req.params.id;
 
   const task = await getConnection().get("tasks").find({ id }).value();
@@ -21,7 +22,7 @@ const findByID = async (req, res) => {
   res.status(200).json(task);
 };
 
-const create = async (req, res) => {
+export const create = async (req, res) => {
   const { title, description } = req.body;
 
   const newTask = {
@@ -36,7 +37,7 @@ const create = async (req, res) => {
   res.status(201).json(newTask.id);
 };
 
-const update = async (req, res) => {
+export const update = async (req, res) => {
   const id = req.params.id;
   const { title, description } = req.body;
 
@@ -52,7 +53,7 @@ const update = async (req, res) => {
   res.status(200).json({ id });
 };
 
-const remove = async (req, res) => {
+export const remove = async (req, res) => {
   const id = req.params.id;
   const db = await getConnection();
 
@@ -65,5 +66,3 @@ const remove = async (req, res) => {
 
   res.status(202).json(id);
 };
-
-module.exports = { getAll, create, count, findByID, update, remove };

@@ -1,12 +1,12 @@
-const lowdb = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
+import lowdb from "lowdb";
+import FileSync from "lowdb/adapters/FileSync.js";
 
 let db;
 
 /**
  * fn create connection database
  */
-const createConnection = async () => {
+export const createConnection = async () => {
   const adapter = new FileSync("db.json");
   db = lowdb(adapter);
   await db
@@ -18,8 +18,7 @@ const createConnection = async () => {
   // console.log("Database: ", db.get("tasks").value());
 };
 
-const getConnection = () => db;
+export const getConnection = () => db;
 
-const resetDatabase = () => getConnection().get("tasks").remove().write();
-
-module.exports = { createConnection, getConnection, resetDatabase };
+export const resetDatabase = () =>
+  getConnection().get("tasks").remove().write();
