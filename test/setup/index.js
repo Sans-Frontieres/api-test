@@ -1,5 +1,6 @@
-const supertest = require("supertest");
-const { server, app } = require("../../src/server");
+import supertest from "supertest";
+import app from "../../src/server";
+import { resetDatabase } from "../../src/server/db";
 
 const api = supertest(app);
 
@@ -8,4 +9,4 @@ const task = {
   description: "Tarea creada para los test de Mocha y Chai.",
 };
 
-module.exports = { api, server, task };
+export { api, resetDatabase, task };
