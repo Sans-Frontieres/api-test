@@ -1,9 +1,8 @@
 import { v4 } from "uuid";
-import * as Task from "../model/Task.js";
 import { getConnection } from "../server/db.js";
 
 export const getAll = async (__, res) => {
-  const tasks = await Task.all();
+  const tasks = await getConnection().get("tasks").value();
   res.json({ tasks, count: tasks?.length });
 };
 
