@@ -1,9 +1,4 @@
-const chai = require("chai");
-const expect = chai.expect;
-const chaiHttp = require("chai-http");
-const { resetDatabase } = require("../../src/server/db");
-chai.use(chaiHttp);
-const { server, api, task } = require("../setup");
+import { api, resetDatabase, task } from "../setup";
 
 beforeEach((done) => {
   resetDatabase();
@@ -18,7 +13,7 @@ describe('PUT "tasks/:id" actualización de tareas. - (Integration)', () => {
       .put(`/api/v1/tasks/${result.body}`)
       .send({ title: "Titulo actualizado." });
 
-    expect(response).to.have.status(200);
+    expect(response.status).toBe(200);
   });
 
   it("Se actualiza el titulo de la tarea guardada.", async () => {
@@ -30,13 +25,13 @@ describe('PUT "tasks/:id" actualización de tareas. - (Integration)', () => {
     const id = result.body;
     const taskResult = await api.get(`/api/v1/tasks/${id}`);
 
-    expect(taskResult.body.title).to.equal(task_1.title);
+    expect(taskResult.body.title).toEqual(task_1.title);
 
     await api.put(`/api/v1/tasks/${id}`).send({ title: "Titulo actualizado." });
 
     const response = await api.get(`/api/v1/tasks/${id}`);
 
-    expect(response.body.title).to.equal("Titulo actualizado.");
+    expect(response.body.title).toEqual("Titulo actualizado.");
   });
 
   it("Al actualizar correctamente una tarea recibimos un ID.", async () => {
@@ -49,7 +44,7 @@ describe('PUT "tasks/:id" actualización de tareas. - (Integration)', () => {
       .put(`/api/v1/tasks/${result.body}`)
       .send({ title: "Titulo actualizado." });
 
-    expect(response.body.id).to.not.be.undefined;
+    expect(response.body.id).toBeDefined();
   });
 
   it("Se intenta actualizar una tarea inexistente, recibimos un status 404 y un message.", async () => {
@@ -57,13 +52,12 @@ describe('PUT "tasks/:id" actualización de tareas. - (Integration)', () => {
       .put("/api/v1/tasks/id-inexistente")
       .send({ title: "Titulo actualizado." });
 
-    expect(response).to.have.status(404);
-    expect(response.body.message).to.not.be.undefined;
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBeDefined();
   });
 });
 
-after((done) => {
+afterAll((done) => {
   resetDatabase();
-  server.close();
   done();
 });

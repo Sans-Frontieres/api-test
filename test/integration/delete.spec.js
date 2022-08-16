@@ -1,9 +1,4 @@
-const chai = require("chai");
-const expect = chai.expect;
-const chaiHttp = require("chai-http");
-const { resetDatabase } = require("../../src/server/db");
-chai.use(chaiHttp);
-const { server, api, task } = require("../setup");
+import { api, resetDatabase, task } from "../setup";
 
 beforeEach((done) => {
   resetDatabase();
@@ -16,7 +11,7 @@ describe('DELETE "tasks/:id" eliminación de tareas. - (Integration)', () => {
 
     const response = await api.delete(`/api/v1/tasks/${idInexistente}`);
 
-    expect(response).to.have.status(404);
+    expect(response.status).toBe(404);
   });
 
   it("Si la tarea a eliminar no existe la api retorna un mensaje de error.", async () => {
@@ -24,7 +19,7 @@ describe('DELETE "tasks/:id" eliminación de tareas. - (Integration)', () => {
 
     const response = await api.delete(`/api/v1/tasks/${idInexistente}`);
 
-    expect(response.body.message).to.not.be.undefined;
+    expect(response.body.message).toBeDefined();
   });
 
   it("Al eliminar una tarea obtenemos un status 202.", async () => {
@@ -33,7 +28,7 @@ describe('DELETE "tasks/:id" eliminación de tareas. - (Integration)', () => {
 
     const response = await api.delete(`/api/v1/tasks/${id}`);
 
-    expect(response).to.have.status(202);
+    expect(response.status).toBe(202);
   });
 
   it("Al eliminar una tarea correctamente obtenemos el ID.", async () => {
@@ -42,13 +37,12 @@ describe('DELETE "tasks/:id" eliminación de tareas. - (Integration)', () => {
 
     const response = await api.delete(`/api/v1/tasks/${id}`);
 
-    expect(response.body).to.not.be.undefined;
-    expect(response.body).to.equal(id);
+    expect(response.body).toBeDefined();
+    expect(response.body).toEqual(id);
   });
 });
 
-after((done) => {
+afterAll((done) => {
   resetDatabase();
-  server.close();
   done();
 });
