@@ -12,7 +12,7 @@ describe('GET "tasks/" lista de tareas. - (Integration)', () => {
     expect(response.status).toBe(200);
   });
 
-  it("La api retorna retorna un array vacio cuando no hay tareas.", async () => {
+  it("La api retorna retorna un array vacio de tareas cuando la cantidad es 0.", async () => {
     const response = await api.get("/api/v1/tasks/");
 
     expect(response.body.tasks).toBeDefined();
@@ -45,14 +45,14 @@ describe('GET "tasks/count" cantidad de tareas. - (Integration)', () => {
   it("Hay una tarea almacenada.", async () => {
     await api.post("/api/v1/tasks/").send(task);
 
-    const response = await api.get("/api/v1/tasks/");
+    const response = await api.get("/api/v1/tasks/count");
 
     expect(response.body.count).toEqual(1);
   });
 });
 
 describe('GET "tasks/:id" Busqueda de tareas por ID. - (Integration)', () => {
-  it("Si la tarea no existe retorna un status 404", async () => {
+  it("Si la tarea no existe retorna un status 404.", async () => {
     const idInexistente = "jhgf-9087-456247-hahal";
     const response = await api.get(`/api/v1/tasks/${idInexistente}`);
 
