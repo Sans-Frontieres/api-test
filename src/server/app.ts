@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import tasksRoutes from "../routes/tasks.routes.js";
+import tasksRoutes from "../routes/tasks.routes";
 
 const app = express();
 

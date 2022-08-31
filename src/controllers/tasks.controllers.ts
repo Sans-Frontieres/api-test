@@ -1,16 +1,17 @@
-import * as Task from "../model/Task.js";
+import { Handler } from "express";
+import * as Task from "../model/Task";
 
-export const getAll = async (__, res) => {
+export const getAll: Handler = async (__, res) => {
   const { tasks, count } = await Task.all();
   res.json({ tasks, count });
 };
 
-export const count = async (__, res) => {
+export const count: Handler = async (__, res) => {
   const count = await Task.count();
   res.json({ count });
 };
 
-export const findByID = async (req, res) => {
+export const findByID: Handler = async (req, res) => {
   const id = req.params.id;
 
   const task = await Task.findByID(id);
@@ -20,7 +21,7 @@ export const findByID = async (req, res) => {
   res.status(200).json(task);
 };
 
-export const create = async (req, res) => {
+export const create: Handler = async (req, res) => {
   const { title, description } = req.body;
 
   const id = await Task.create(title, description);
@@ -28,7 +29,7 @@ export const create = async (req, res) => {
   res.status(201).json(id);
 };
 
-export const update = async (req, res) => {
+export const update: Handler = async (req, res) => {
   const id = req.params.id;
   const { title, description } = req.body;
 
@@ -40,7 +41,7 @@ export const update = async (req, res) => {
   res.status(200).json({ id: idTask });
 };
 
-export const remove = async (req, res) => {
+export const remove: Handler = async (req, res) => {
   const id = req.params.id;
 
   const idTask = await Task.remove(id);

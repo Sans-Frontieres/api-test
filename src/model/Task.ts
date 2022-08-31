@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { getConnection } from "../server/db.js";
+import { getConnection } from "../server/db";
 
 export const all = async () => {
   const tasks = await getConnection().get("tasks").value();
@@ -11,12 +11,12 @@ export const count = async () => {
   return tasks.length;
 };
 
-export const findByID = async (id) => {
+export const findByID = async (id: string) => {
   const task = await getConnection().get("tasks").find({ id }).value();
   return task;
 };
 
-export const create = async (title, description) => {
+export const create = async (title: string, description: string) => {
   const newTask = {
     id: v4(),
     title,
@@ -28,7 +28,7 @@ export const create = async (title, description) => {
   return newTask.id;
 };
 
-export const update = async (id, title, description) => {
+export const update = async (id: string, title: string, description: string) => {
   const db = await getConnection();
   const task = await db.get("tasks").find({ id }).value();
 
@@ -39,7 +39,7 @@ export const update = async (id, title, description) => {
   return id;
 };
 
-export const remove = async (id) => {
+export const remove = async (id: string) => {
   const db = await getConnection();
 
   const task = await db.get("tasks").find({ id }).value();

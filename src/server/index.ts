@@ -1,6 +1,6 @@
-import "./config.js";
-import app from "./app.js";
-import { createConnection } from "./db.js";
+import "./config";
+import app from "./app";
+import { createConnection } from "./db";
 
 createConnection();
 
