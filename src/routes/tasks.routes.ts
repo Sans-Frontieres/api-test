@@ -7,10 +7,11 @@ router.get("/", controller.getAll);
 router.get("/count", controller.count);
 router.get("/:id", controller.findByID);
 
+router.delete("/:id", controller.remove);
+
 router.post("/", controller.create);
 
 router.put("/:id", controller.update);
 
-router.delete("/:id", controller.remove);
 
 export default router;

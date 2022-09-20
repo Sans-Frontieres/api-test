@@ -1,0 +1,33 @@
+# Endpoint for a delete task by ID
+paths:
+  /tasks/{id}:
+    delete:
+      summary: "Eliminación de una tarea por ID."
+      operationId: "remove"
+      tags: 
+      - "Tasks"
+      parameters:
+        - $ref: "#/components/parameters/taskId"
+      responses:
+        202:
+          description: "Tarea eliminada correctamente."
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "string"
+                    description: "Retorna el ID de la tarea eliminada."
+                    example: "451067ff-aacc-4fc7-9e49-b9aa7ce5b8b1"
+        404:  
+          description: "la tarea no fue encontrada."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskNotFound" 
+        500:
+          description: Error server no response.
+
+
+

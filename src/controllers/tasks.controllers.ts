@@ -3,7 +3,7 @@ import * as Task from "../model/Task";
 
 export const getAll: Handler = async (__, res) => {
   const { tasks, count } = await Task.all();
-  res.json({ tasks, count });
+  res.status(200).json({ tasks, count });
 };
 
 export const count: Handler = async (__, res) => {
@@ -45,6 +45,8 @@ export const remove: Handler = async (req, res) => {
   const id = req.params.id;
 
   const idTask = await Task.remove(id);
+
+
 
   if (!idTask)
     return res.status(404).json({ message: "La tarea no fue encontrada." });

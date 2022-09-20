@@ -1,0 +1,47 @@
+components:
+  schemas:
+    Task:
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "ID autogenerado para cada tarea"
+        title:
+          type: "string"
+          description: "Representa el titulo de la tarea"
+        description:
+          type: "string"
+          description: "Representa la description de la tarea."
+      required:
+        - title
+        - description
+
+    TaskNotFound:
+      type: "object"
+      properties:
+        message: 
+          type: "string"
+          description: "Mensaje de error."
+      example: 
+        message: "No se encontro la tarea."
+
+  parameters:
+    taskId:
+      in: "path"
+      name: "id"
+      required: true
+      schema:
+        type: "string"
+      description: "Representa el ID de la tarea"
+      example: "451067ff-aacc-4fc7-9e49-b9aa7ce5b8b1"
+      
+
+
+tags:
+- name: "Tasks"
+  description: "Endpoints of tasks"
+- name: "User"
+  description: "Endpoints of users"
+schemes:
+- "http"
+- "https"

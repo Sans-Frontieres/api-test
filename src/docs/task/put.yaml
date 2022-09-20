@@ -1,0 +1,44 @@
+# Endpoint update task
+paths:
+  /tasks/{id}:
+    put:
+      summary: Update task
+      operationId: "update"
+      tags:
+      - "Tasks"
+      parameters:
+      - $ref: "#/components/parameters/taskId"
+      requestBody: 
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                title: 
+                  example: "Actualización de la tarea desde Swagger UI."
+                description:
+                  example: "La descripción ha sido actualizada."
+
+      responses:
+        200:
+          description: "Tarea actualizada con éxito."
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id: 
+                    type: "string"
+                    description: "ID autogenerado para cada tarea"
+                example: 
+                  id: "451067ff-aacc-4fc7-9e49-b9aa7ce5b8b1"
+        404:
+          description: "La tarea no fue encontrada."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskNotFound"   
+        500:
+          description: Error server no response.
+      
