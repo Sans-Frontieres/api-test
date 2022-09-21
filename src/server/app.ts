@@ -4,8 +4,11 @@ import tasksRoutes from "../routes/tasks.routes";
 import swaggerUI from 'swagger-ui-express'
 import swaggerJsDoc from 'swagger-jsdoc'
 import { options } from './swaggerOptions'
+import cors from 'cors'
 
 const app = express();
+
+app.use(cors({ origin: '*' }))
 
 app.use(express.json());
 
