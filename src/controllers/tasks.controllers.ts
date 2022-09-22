@@ -46,8 +46,6 @@ export const remove: Handler = async (req, res) => {
 
   const idTask = await Task.remove(id);
 
-
-
   if (!idTask)
     return res.status(404).json({ message: "La tarea no fue encontrada." });
 
