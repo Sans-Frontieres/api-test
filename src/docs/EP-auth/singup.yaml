@@ -1,0 +1,40 @@
+# Endpoin para alta de usuario
+paths:
+  /auth/singup:
+    post:
+      summary: "Alta de usuarios"
+      operationId: "singUp"
+      tags:
+      - "Auth"
+      requestBody:
+        required:
+        - username
+        - email
+        - password
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                username:
+                  example: "nikodev"
+                  description: "Define el nick del usuario."
+                email:
+                  example: "example@email.com"
+                password: 
+                  example: "miContraseña1234"
+      responses:
+        201:
+          description: Usuario creado con éxito
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id: 
+                    type: "string"
+                    description: "ID del usuario recién dado de alta."
+                example:
+                  id: "451067ff-aacc-4fc7-9e49-b9aa7ce5b8b1"
+
+

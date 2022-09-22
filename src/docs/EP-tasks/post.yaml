@@ -1,0 +1,36 @@
+# Endpoint create a new tasks
+paths:
+  /tasks:      
+    post:
+      summary: "Creación de una nueva tarea."
+      operationId: "create"
+      tags:
+      - "Tasks"
+      requestBody:
+        required: 
+        - title
+        - description
+        content:
+         application/json:
+           schema:
+             type: "object"
+             properties:
+              title: 
+                example: "Titulo de ejemplo de una tarea creada desde swagger ui."
+              description:
+                example: "Descripción de la tarea a crear."
+      responses:
+        201:
+          description: Tarea creada con éxito
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id: 
+                    type: "string"
+                    description: "Contendrá el ID de la tarea insertada en la BD."
+                example:
+                  id: "451067ff-aacc-4fc7-9e49-b9aa7ce5b8b1"
+        500:
+          description: Error server no response.

@@ -1,4 +1,4 @@
-# Endpoint for a delete task by ID
+# Endpoint create a new tasks
 paths:
   /tasks/{id}:
     delete:
@@ -28,6 +28,3 @@ paths:
                 $ref: "#/components/schemas/TaskNotFound" 
         500:
           description: Error server no response.
-
-
-

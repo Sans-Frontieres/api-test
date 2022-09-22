@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import tasksRoutes from "../routes/tasks.routes";
+import { Paths, tasksRouter, authRouter } from "../routes";
 import swaggerUI from 'swagger-ui-express'
 import swaggerJsDoc from 'swagger-jsdoc'
 import { options } from './swaggerOptions'
@@ -19,11 +19,13 @@ const specs = swaggerJsDoc(options)
 
 app.use(morgan("dev"));
 
-app.use("/api/v1/tasks", tasksRoutes);
+app.use(Paths.TASKS, tasksRouter);
 
-app.use("/api/v1/docs", swaggerUI.serve, swaggerUI.setup(specs))
+app.use(Paths.AUTH, authRouter);
 
-app.use("/api/v1", (req, res, next) => {
+app.use(Paths.DOCS, swaggerUI.serve, swaggerUI.setup(specs))
+
+app.use(Paths.ROOT, (req, res, next) => {
   res.status(200).json({ message: "Respuesta al navegador" });
 });
 

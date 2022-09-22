@@ -1,4 +1,5 @@
 import supertest from "supertest";
+import { Paths } from "../../src/routes";
 import app from "../../src/server";
 import { resetDatabase } from "../../src/server/db";
 
@@ -9,4 +10,4 @@ const task = {
   description: "Tarea creada para los test de Mocha y Chai.",
 };
 
-export { api, resetDatabase, task };
+export { api, Paths, resetDatabase, task };

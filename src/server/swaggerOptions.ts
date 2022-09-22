@@ -22,5 +22,5 @@ export const options = {
             }
         ]
     },
-    apis: ['./src/docs/task/*.yaml']
+    apis: ['./src/docs/*.yaml', './src/docs/EP-tasks/*.yaml', './src/docs/EP-auth/*.yaml']
 }

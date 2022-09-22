@@ -1,0 +1,48 @@
+# Endpoin para alta de usuario
+paths:
+  /auth/login:
+    post:
+      summary: "Sesión de usuarios"
+      operationId: "login"
+      tags:
+      - "Auth"
+      requestBody:
+        required:
+        - email
+        - password
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  example: "example@email.com"
+                password: 
+                  example: "miContraseña1234"
+      responses:
+        200:
+          description: Usuario creado con éxito
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  success: 
+                    type: "boolean"
+                    description: "Responderá true si se ha logueado con éxito."
+                example:
+                  success: true
+        203:
+          description: Usuario creado con éxito
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  error: 
+                    type: "string"
+                    description: "Devuelve el mensaje de error cuando las credenciales no coinciden."
+                example:
+                  error: "Las credenciales son erroneas."
+
+

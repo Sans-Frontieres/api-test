@@ -1,0 +1,82 @@
+# Endpoint get tasks
+paths:
+  # Endpoint all tasks
+  /tasks:    
+    get:
+      tags: 
+      - "Tasks"
+      summary: "Recuperación de todas las tareas almacenadas."
+      operationId: "getAll"
+      responses: 
+        200:
+          description: "Sirve para ver todas las tareas almacenadas en la BD."
+          content: 
+            aplication/json:
+              schema: 
+                type: "object"
+                properties:
+                  tasks: 
+                    type: "array"
+                    items:
+                      $ref: "#components/schemas/Task"                          
+                  count:
+                    type: "integer"
+                    description: "Cantidad de tareas almacenadas."
+                    default: 1
+        500:
+          description: Error server no response.
+                  
+
+  # Endpoint quantity of tasks
+  /tasks/count:
+    get: 
+      tags:
+      - "Tasks"
+      summary: "Recupera el número total de las tareas almacenadas en la BD."
+      operationId: "count"
+      responses:
+        200:
+          description: "Contador de tareas almacenadas."
+          content:
+            aplication/json:
+              schema:
+                type: "object"
+                properties:
+                  count:
+                    type: "integer"
+                    description: "Representa la cantidad de tareas."
+                    default: 1
+        500:
+          description: Error server no response.
+                 
+# Endpoint fin by ID
+/tasks/{id}:
+  get:
+    tags:
+    - "Tasks"
+    summary: "Recupera una tarea según su ID."
+    operationId: "findByID"
+    parameters: 
+      - $ref: "#/components/parameters/taskId"
+    responses:
+      200:
+        description: "La tarea fue encontrada con éxito."
+        content: 
+          application/json:
+            schemas: "object"
+            $ref: "#/components/schemas/Task"
+      404:
+        description: "La tarea no fue encontrada."
+        content: 
+          application/json:
+            schemas: 
+            $ref: "#/components/schemas/TaskNotFound"
+      500:
+          description: Error server no response.
+
+
+
+
+
+
+
