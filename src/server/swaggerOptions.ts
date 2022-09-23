@@ -19,7 +19,7 @@ export const options = {
         },
         servers: [
             {
-                url: `${process.env.HOST}:${process.env.PORT}/${Paths.ROOT}`,
+                url: `http://${process.env.HOST}:${process.env.PORT}${Paths.ROOT}`,
                 description: 'Development'
             }
         ]
