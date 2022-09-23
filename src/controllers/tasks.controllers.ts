@@ -1,5 +1,5 @@
 import { Handler } from "express";
-import * as Task from "../model/Task";
+import { Task } from "../model";
 
 export const getAll: Handler = async (__, res) => {
   const { tasks, count } = await Task.all();

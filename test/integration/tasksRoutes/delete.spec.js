@@ -25,7 +25,7 @@ describe(`DELETE ${uri} eliminación de tareas. - (Integration)`, () => {
   });
 
   it("Al eliminar una tarea obtenemos un status 202.", async () => {
-    const result = await api.post("${uri}/").send(task);
+    const result = await api.post(uri).send(task);
     const id = result.body;
 
     const response = await api.delete(`${uri}/${id}`);
@@ -34,7 +34,7 @@ describe(`DELETE ${uri} eliminación de tareas. - (Integration)`, () => {
   });
 
   it("Al eliminar una tarea correctamente obtenemos el ID.", async () => {
-    const result = await api.post("${uri}/").send(task);
+    const result = await api.post(uri).send(task);
     const id = result.body;
 
     const response = await api.delete(`${uri}/${id}`);

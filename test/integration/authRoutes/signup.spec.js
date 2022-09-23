@@ -1,5 +1,4 @@
-import Paths from "../../../src/routes/paths";
-import { api, resetDatabase } from "../../setup";
+import { api, Paths, resetDatabase } from "../../setup";
 
 beforeEach(async () => {
   await resetDatabase();
@@ -8,7 +7,7 @@ beforeEach(async () => {
 describe(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () => {
   it("Cuando se de alta correctamente un usuario obtenemos el id como respuesta.", async () => {
     const response = await api
-      .post(`${Paths.AUTH}/singup`)
+      .post(`${Paths.AUTH}/signup`)
       .send({
         username: "nikodev",
         email: "nikolas090189@gmail.com",
@@ -22,7 +21,7 @@ describe(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () =>
 
   it("Si el esquema no pasa la validación de datos se recibirá status 422 y un error.", async () => {
     const response = await api
-      .post(`${Paths.AUTH}/singup`)
+      .post(`${Paths.AUTH}/signup`)
       .send({
         username: "nikodev",
         email: "nikolas090189@gmail.com",
@@ -36,7 +35,7 @@ describe(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () =>
 
   it("Se intenta registrar un username existente recibe un status 400 y un mensaje de error.", async () => {
     await api
-      .post(`${Paths.AUTH}/singup`)
+      .post(`${Paths.AUTH}/signup`)
       .send({
         username: "nikodev",
         email: "nikolas090189@gmail.com",
@@ -45,7 +44,7 @@ describe(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () =>
       .expect("Content-Type", /application\/json/)
       .expect(201);
 
-    const response = await api.post(`${Paths.AUTH}/singup`).send({
+    const response = await api.post(`${Paths.AUTH}/signup`).send({
       username: "nikodev",
       email: "example@gmail.com",
       password: "1234",
@@ -57,7 +56,7 @@ describe(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () =>
 
   it("Se intenta registrar un email existente recibe un status 400 y un mensaje de error.", async () => {
     await api
-      .post(`${Paths.AUTH}/singup`)
+      .post(`${Paths.AUTH}/signup`)
       .send({
         username: "nikodev",
         email: "nikolas090189@gmail.com",
@@ -66,7 +65,7 @@ describe(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () =>
       .expect("Content-Type", /application\/json/)
       .expect(201);
 
-    const response = await api.post(`${Paths.AUTH}/singup`).send({
+    const response = await api.post(`${Paths.AUTH}/signup`).send({
       username: "newNick",
       email: "nikolas090189@gmail.com",
       password: "1234",

@@ -1,29 +1,29 @@
-import { Handler } from "express";
+import { Handler } from 'express';
+import { User } from '../model';
 
-export const signup: Handler = async (req, res) => {
+export const signUp: Handler = async (req, res) => {
     try {
-        const { username, email, password } = req.body
+        const { email, username, password } = req.body
+        const { id } = await User.signUp({ email, username, password })
 
-        console.log('Property: ', username)
-
-        res.status(201).json({ id: 'id' })
-
-    } catch (error) {
-        console.log('Error', error);
-        res.status(444).send('Error en el server...')
+        res.status(201).json({ id })
+    } catch (error: any) {
+        res.status(444).json({ message: error.message })
+        throw new Error('Error de servidor - ' + error.message)
     }
 }
+
 
 export const login: Handler = async (req, res) => {
     try {
         const { email, password } = req.body
+        const { success } = await User.login({ email, password })
 
-        console.log('Property: ', email)
+        if (!success) return res.status(203).json({ error: 'Las credenciales son erroneas.' })
 
-        res.status(201).json({ id: 'id' })
-
-    } catch (error) {
-        console.log('Error', error);
-        res.status(444).send('Error en el server...')
+        res.status(200).json({ success })
+    } catch (error: any) {
+        res.status(444).json({ error: error.message })
+        throw new Error('Error de servidor - ' + error.message)
     }
 }

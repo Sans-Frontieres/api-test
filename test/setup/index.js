@@ -1,7 +1,7 @@
 import supertest from "supertest";
-import { Paths } from "../../src/routes";
-import app from "../../src/server";
+import app from "../../src/server/app";
 import { resetDatabase } from "../../src/server/db";
+import { Paths } from "../../src/routes";
 
 const api = supertest(app);
 

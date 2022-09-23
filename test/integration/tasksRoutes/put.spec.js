@@ -51,7 +51,7 @@ describe(`PUT "${uri}/:id" actualización de tareas. - (Integration)`, () => {
 
   it("Se intenta actualizar una tarea inexistente, recibimos un status 404 y un message.", async () => {
     const response = await api
-      .put("${uri}/id-inexistente")
+      .put(`${uri}/id-inexistente`)
       .send({ title: "Titulo actualizado." });
 
     expect(response.status).toBe(404);

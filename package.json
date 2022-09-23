@@ -9,7 +9,7 @@
     "dev": " npm run dev:run --ignore db.json",
     "start": "NODE_ENV=staging node build/server/index.js",
     "test:run": "NODE_ENV=test  jest --verbose  --forceExit",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {

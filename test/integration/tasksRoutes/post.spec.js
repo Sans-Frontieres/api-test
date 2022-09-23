@@ -8,7 +8,7 @@ beforeEach((done) => {
 describe('POST "tasks/" creación de tareas. - (Integration)', () => {
   it("La creación exitosa devuelve un código de estado 201.", async () => {
     const response = await api.post(Paths.TASKS).send(task);
-    console.log("Respuesta: ", response.body);
+
     expect(response.status).toBe(201);
   });
 

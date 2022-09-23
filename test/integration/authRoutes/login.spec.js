@@ -1,5 +1,4 @@
-import Paths from "../../../src/routes/paths";
-import { api, resetDatabase } from "../../setup";
+import { api, Paths, resetDatabase } from "../../setup";
 
 beforeEach(async () => {
   await resetDatabase();
@@ -7,7 +6,7 @@ beforeEach(async () => {
 
 describe(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
   it("Cuando un usuario se loguea correctamente obtenemos success = true.", async () => {
-    await api.post(`${Paths.AUTH}/singup`).send({
+    await api.post(`${Paths.AUTH}/signup`).send({
       username: "nikodev",
       email: "nikolas090189@gmail.com",
       password: "1234",

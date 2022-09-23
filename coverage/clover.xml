@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1663878392649" clover="3.2.0">
-  <project timestamp="1663878392649" name="All files">
-    <metrics statements="97" coveredstatements="95" conditionals="16" coveredconditionals="13" methods="20" coveredmethods="18" elements="133" coveredelements="126" complexity="0" loc="97" ncloc="97" packages="8" files="13" classes="13"/>
+<coverage generated="1663974614416" clover="3.2.0">
+  <project timestamp="1663974614417" name="All files">
+    <metrics statements="150" coveredstatements="145" conditionals="32" coveredconditionals="29" methods="27" coveredmethods="27" elements="209" coveredelements="201" complexity="0" loc="150" ncloc="150" packages="8" files="21" classes="21"/>
     <package name="src.controllers">
-      <metrics statements="28" coveredstatements="28" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
-      <file name="tasks.controllers.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/controllers/tasks.controllers.ts">
-        <metrics statements="28" coveredstatements="28" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
-        <line num="4" count="5" type="stmt"/>
+      <metrics statements="43" coveredstatements="39" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="8"/>
+      <file name="auth.controllers.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/controllers/auth.controllers.ts">
+        <metrics statements="15" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="4" count="7" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
-        <line num="9" count="5" type="stmt"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="22" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/controllers/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="tasks.controllers.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/controllers/tasks.controllers.ts">
+        <metrics statements="28" coveredstatements="28" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="6"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
-        <line num="14" count="5" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
         <line num="15" count="6" type="stmt"/>
         <line num="17" count="6" type="stmt"/>
         <line num="19" count="6" type="cond" truecount="2" falsecount="0"/>
         <line num="21" count="4" type="stmt"/>
-        <line num="24" count="5" type="stmt"/>
+        <line num="24" count="7" type="stmt"/>
         <line num="25" count="11" type="stmt"/>
         <line num="27" count="11" type="stmt"/>
         <line num="29" count="11" type="stmt"/>
-        <line num="32" count="5" type="stmt"/>
+        <line num="32" count="7" type="stmt"/>
         <line num="33" count="4" type="stmt"/>
         <line num="34" count="4" type="stmt"/>
         <line num="36" count="4" type="stmt"/>
         <line num="38" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="39" count="1" type="stmt"/>
         <line num="41" count="3" type="stmt"/>
-        <line num="44" count="5" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
         <line num="45" count="4" type="stmt"/>
         <line num="47" count="4" type="stmt"/>
         <line num="49" count="4" type="cond" truecount="2" falsecount="0"/>
@@ -37,129 +58,185 @@
       </file>
     </package>
     <package name="src.middlewares">
-      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
       <file name="index.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/middlewares/index.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
+      <file name="uniqueEmail.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/middlewares/uniqueEmail.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="10" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="15" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+      </file>
     </package>
     <package name="src.middlewares.validators">
-      <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <metrics statements="12" coveredstatements="12" conditionals="8" coveredconditionals="6" methods="4" coveredmethods="4"/>
+      <file name="auth.validations.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/middlewares/validators/auth.validations.ts">
+        <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="2"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="6" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="2" falsecount="0"/>
+      </file>
       <file name="tasks.validations.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/middlewares/validators/tasks.validations.ts">
         <metrics statements="6" coveredstatements="6" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="6" count="11" type="stmt"/>
-        <line num="7" count="11" type="cond" truecount="1" falsecount="1"/>
-        <line num="10" count="5" type="stmt"/>
-        <line num="11" count="4" type="stmt"/>
-        <line num="12" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="11" type="stmt"/>
+        <line num="6" count="11" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+        <line num="11" count="4" type="cond" truecount="1" falsecount="1"/>
       </file>
     </package>
     <package name="src.model">
-      <metrics statements="26" coveredstatements="26" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+      <metrics statements="44" coveredstatements="43" conditionals="12" coveredconditionals="11" methods="10" coveredmethods="10"/>
       <file name="Task.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/model/Task.ts">
         <metrics statements="26" coveredstatements="26" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
-        <line num="4" count="5" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
         <line num="6" count="4" type="stmt"/>
-        <line num="9" count="5" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
         <line num="11" count="2" type="stmt"/>
-        <line num="14" count="5" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
         <line num="15" count="6" type="stmt"/>
         <line num="16" count="6" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
         <line num="20" count="11" type="stmt"/>
         <line num="25" count="11" type="stmt"/>
         <line num="26" count="11" type="stmt"/>
         <line num="28" count="11" type="stmt"/>
-        <line num="31" count="5" type="stmt"/>
+        <line num="31" count="7" type="stmt"/>
         <line num="32" count="4" type="stmt"/>
         <line num="33" count="4" type="stmt"/>
         <line num="35" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="37" count="3" type="stmt"/>
         <line num="39" count="3" type="stmt"/>
-        <line num="42" count="5" type="stmt"/>
+        <line num="42" count="7" type="stmt"/>
         <line num="43" count="4" type="stmt"/>
         <line num="45" count="4" type="stmt"/>
         <line num="47" count="4" type="cond" truecount="2" falsecount="0"/>
         <line num="49" count="2" type="stmt"/>
         <line num="51" count="2" type="stmt"/>
       </file>
+      <file name="User.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/model/User.ts">
+        <metrics statements="18" coveredstatements="17" conditionals="8" coveredconditionals="7" methods="4" coveredmethods="4"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="32" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="45" count="7" type="stmt"/>
+        <line num="46" count="6" type="stmt"/>
+        <line num="48" count="6" type="stmt"/>
+        <line num="50" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="7" type="stmt"/>
+        <line num="59" count="5" type="stmt"/>
+        <line num="61" count="5" type="stmt"/>
+        <line num="63" count="5" type="cond" truecount="2" falsecount="0"/>
+      </file>
+      <file name="index.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/model/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
     </package>
     <package name="src.routes">
-      <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="auth.routes.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/routes/auth.routes.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/routes/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
       <file name="tasks.routes.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/routes/tasks.routes.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="8" count="5" type="stmt"/>
-        <line num="9" count="5" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
-        <line num="13" count="5" type="stmt"/>
-        <line num="15" count="5" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="7" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
       </file>
     </package>
     <package name="src.schemas">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="authSchema.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/schemas/authSchema.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="5" count="7" type="stmt"/>
+        <line num="9" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+      </file>
       <file name="index.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/schemas/index.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
       <file name="taskSchema.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/schemas/taskSchema.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="5" type="stmt"/>
-        <line num="4" count="5" type="stmt"/>
-        <line num="6" count="5" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
+        <line num="4" count="7" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
       </file>
     </package>
     <package name="src.server">
-      <metrics statements="24" coveredstatements="22" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="4"/>
+      <metrics statements="21" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
       <file name="app.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/server/app.ts">
-        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="9" count="5" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
-        <line num="13" count="5" type="stmt"/>
-        <line num="16" count="5" type="stmt"/>
-        <line num="18" count="5" type="stmt"/>
-        <line num="20" count="5" type="stmt"/>
-        <line num="22" count="5" type="stmt"/>
-        <line num="24" count="5" type="stmt"/>
-        <line num="26" count="5" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
+        <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="17" count="7" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="21" count="7" type="stmt"/>
+        <line num="23" count="7" type="stmt"/>
+        <line num="25" count="7" type="stmt"/>
+        <line num="27" count="7" type="stmt"/>
+        <line num="29" count="7" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="33" count="7" type="stmt"/>
       </file>
       <file name="config.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/server/config.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="5" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
       </file>
       <file name="db.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/server/db.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="16" count="5" type="stmt"/>
-        <line num="17" count="5" type="stmt"/>
-        <line num="18" count="5" type="stmt"/>
-        <line num="19" count="5" type="stmt"/>
-        <line num="22" count="55" type="stmt"/>
-        <line num="24" count="5" type="stmt"/>
-        <line num="25" count="24" type="stmt"/>
-      </file>
-      <file name="index.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/server/index.ts">
-        <metrics statements="5" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="0"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="17" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="18" count="117" type="stmt"/>
+        <line num="22" count="7" type="stmt"/>
+        <line num="23" count="34" type="stmt"/>
+        <line num="24" count="34" type="stmt"/>
       </file>
       <file name="swaggerOptions.ts" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/src/server/swaggerOptions.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="7" type="stmt"/>
       </file>
     </package>
     <package name="test.setup">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="index.js" path="/Users/nikolas/Development/Curso-de-Node-JS/api-test/test/setup/index.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="5" count="5" type="stmt"/>
-        <line num="7" count="5" type="stmt"/>
+        <line num="6" count="7" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
       </file>
     </package>
   </project>

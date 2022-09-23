@@ -1,3 +1,5 @@
+import { Paths } from "../routes";
+
 export const options = {
     definition: {
         openapi: '3.0.0',
@@ -17,7 +19,7 @@ export const options = {
         },
         servers: [
             {
-                url: 'http://localhost:4000/api/v1',
+                url: `${process.env.HOST}:${process.env.PORT}/${Paths.ROOT}`,
                 description: 'Development'
             }
         ]

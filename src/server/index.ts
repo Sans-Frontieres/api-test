@@ -1,8 +1,4 @@
-import "./config";
 import app from "./app";
-import { createConnection } from "./db";
-
-createConnection();
 
 const listenServer = () => {
   app.listen(process.env.PORT, () => {
@@ -16,4 +12,3 @@ const listenServer = () => {
 
 if (process.env.NODE_ENV != "test") listenServer();
 
-export default app;
