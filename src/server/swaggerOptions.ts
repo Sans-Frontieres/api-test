@@ -19,8 +19,8 @@ export const options = {
         },
         servers: [
             {
-                url: `http://${process.env.HOST}:${process.env.PORT}${Paths.ROOT}`,
-                description: 'Development'
+                url: `${process.env.URI_SWAGGER}`,
+                description: `${process.env.NODE_ENV}`
             }
         ]
     },
