@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
 import { getConnection } from '../server/db';
 import { User } from '../interfaces/types';
+import bcrypt from 'bcrypt'
 
 type SignUpParams = Omit<User, 'id'>
 
@@ -10,12 +11,24 @@ type LoginParams = Omit<SignUpParams, 'username'>
 
 type Login = (params: LoginParams) => Promise<{ success: boolean }>
 
+
+const encrypt = async (password: string) => {
+    const salt = await bcrypt.genSalt(5)
+    return await bcrypt.hash(password, salt)
+}
+
+
+const compare = async (password: string, hashPassword: string) => {
+    return await bcrypt.compare(password, hashPassword)
+}
+
+
 export const signUp: SignUp = async ({ username, email, password }) => {
     const newUser = {
         id: v4(),
         username,
         email,
-        password
+        password: await encrypt(password)
     }
 
     await getConnection().get('users').push(newUser).write()
@@ -31,7 +44,10 @@ export const login: Login = async ({ email, password }) => {
 
     if (!user) return { success: false }
 
-    if (user.password === password) return { success: true }
+    console.log('Encrypt user ', await encrypt(password));
+    console.log('Password user ', user.password);
+
+    if (await compare(password, user.password)) return { success: true }
 
     return { success: false }
 }
