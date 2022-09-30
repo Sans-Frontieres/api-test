@@ -10,7 +10,7 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe("Existencia de username en el alta de un usuario. - (Unitario) -", () => {
+describe.skip("Existencia de username en el alta de un usuario. - (Unitario) -", () => {
   it("Existencia de un usuername en el sistema retorna true.", async () => {
     const newUser = {
       username: "nikodev",

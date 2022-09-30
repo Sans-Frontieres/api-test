@@ -14,7 +14,7 @@ beforeAll(async () => {
   await User.signUp(usuario_1);
 });
 
-describe("Login - Sesion de usuario. - (Unitario) -", () => {
+describe.skip("Login - Sesion de usuario. - (Unitario) -", () => {
   it("El usuario inicia sesion correctamente obtenemos sucess = true.", async () => {
     const response = await User.login({
       email: usuario_1.email,

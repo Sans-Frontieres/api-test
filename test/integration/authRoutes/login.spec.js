@@ -6,7 +6,7 @@ beforeEach(async () => {
 
 describe.skip(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
   it("Cuando un usuario se loguea correctamente obtenemos un token.", async () => {
-    await api.post(`${Paths.AUTH}/singup`).send({
+    await api.post(`${Paths.AUTH}/signup`).send({
       username: "nikodev",
       email: "nikolas090189@gmail.com",
       password: "1234",
@@ -25,7 +25,7 @@ describe.skip(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () =>
   });
 
   it("Cuando un usuario se loguea erroneamente recibimos un status 203 y un mensage de error.", async () => {
-    await api.post(`${Paths.AUTH}/singup`).send({
+    await api.post(`${Paths.AUTH}/signup`).send({
       username: "nikodev",
       email: "nikolas090189@gmail.com",
       password: "1234",
@@ -40,7 +40,7 @@ describe.skip(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () =>
       .expect("Content-Type", /application\/json/);
 
     expect(response.status).toBe(203);
-    expect(response.body.message).toBeTruthy();
+    expect(response.body.error).toBeTruthy();
   });
 
   it("Cuando el email del usuario no existe recibimos un status 203 y un mensage de error.", async () => {
@@ -53,7 +53,7 @@ describe.skip(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () =>
       .expect("Content-Type", /application\/json/);
 
     expect(response.status).toBe(203);
-    expect(response.body.message).toBeTruthy();
+    expect(response.body.error).toBeTruthy();
   });
 
   it("Si el esquema no pasa la validación de datos se recibirá status 422 y un error.", async () => {

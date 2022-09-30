@@ -10,7 +10,7 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe("Alta de usuario. - (Unitario) -", () => {
+describe.skip("Alta de usuario. - (Unitario) -", () => {
   it("Creación de un nuevo usuario devuelve el id.", async () => {
     const newUser = {
       username: "nikodev",
