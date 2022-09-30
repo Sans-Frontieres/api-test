@@ -17,11 +17,12 @@ export const signUp: Handler = async (req, res) => {
 export const login: Handler = async (req, res) => {
     try {
         const { email, password } = req.body
-        const { success } = await User.login({ email, password })
 
-        if (!success) return res.status(203).json({ error: 'Las credenciales son erroneas.' })
+        const token = await User.login({ email, password })
 
-        res.status(200).json({ success })
+        if (!token) return res.status(203).json({ error: 'Las credenciales son erroneas.' })
+
+        res.status(200).json({ token })
     } catch (error: any) {
         res.status(444).json({ error: error.message })
         throw new Error('Error de servidor - ' + error.message)

@@ -2,6 +2,7 @@ import { v4 } from "uuid";
 import { getConnection } from '../server/db';
 import { User } from '../interfaces/types';
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 type SignUpParams = Omit<User, 'id'>
 
@@ -9,7 +10,7 @@ type SignUp = (params: SignUpParams) => Promise<{ id: string }>
 
 type LoginParams = Omit<SignUpParams, 'username'>
 
-type Login = (params: LoginParams) => Promise<{ success: boolean }>
+type Login = (params: LoginParams) => Promise<{ token: string } | undefined>
 
 
 const encrypt = async (password: string) => {
@@ -18,10 +19,14 @@ const encrypt = async (password: string) => {
 }
 
 
-const compare = async (password: string, hashPassword: string) => {
-    return await bcrypt.compare(password, hashPassword)
-}
+const compare = async (password: string, hashPassword: string) => await bcrypt.compare(password, hashPassword)
 
+
+const sign = (payload: { idUser: string }) => jwt.sign(
+    payload,
+    process.env.PRIVATE_KEY!,
+    { expiresIn: "5m", algorithm: "ES256" }
+)
 
 export const signUp: SignUp = async ({ username, email, password }) => {
     const newUser = {
@@ -39,25 +44,21 @@ export const signUp: SignUp = async ({ username, email, password }) => {
 
 export const login: Login = async ({ email, password }) => {
     const db = await getConnection()
-
     const user: User = await db.get('users').find({ email }).value()
 
-    if (!user) return { success: false }
+    if (!user) return
 
-    console.log('Encrypt user ', await encrypt(password));
-    console.log('Password user ', user.password);
+    const match = await compare(password, user.password)
 
-    if (await compare(password, user.password)) return { success: true }
+    if (!match) return
 
-    return { success: false }
+    const token = sign({ idUser: user.id })
+
+    return { token }
 }
 
 
-/**
- * Metodo para consultar la existencia de un user por username
- * @param username : string
- * @returns 
- */
+
 export const usernameExists = async (username: string) => {
     const db = await getConnection()
 
@@ -66,11 +67,7 @@ export const usernameExists = async (username: string) => {
     return user ? true : false
 }
 
-/**
- * Metodo para consultar la existencia de un user por email
- * @param email : string
- * @returns 
- */
+
 export const emailExists = async (email: string) => {
     const db = await getConnection()
 
