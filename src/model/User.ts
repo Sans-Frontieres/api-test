@@ -22,11 +22,12 @@ const encrypt = async (password: string) => {
 const compare = async (password: string, hashPassword: string) => await bcrypt.compare(password, hashPassword)
 
 
-const sign = (payload: { idUser: string }) => jwt.sign(
-    payload,
-    process.env.PRIVATE_KEY!,
-    { expiresIn: "5m", algorithm: "ES256" }
-)
+const sign = (payload: { idUser: string }) => {
+    return jwt.sign(
+        payload,
+        process.env.PRIVATE_KEY!,
+        { expiresIn: "5m", algorithm: "RS256" })
+}
 
 export const signUp: SignUp = async ({ username, email, password }) => {
     const newUser = {

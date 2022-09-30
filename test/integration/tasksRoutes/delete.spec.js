@@ -1,50 +1,48 @@
-import { api, Paths, resetDatabase, task } from "../../setup";
+import { api, Paths, resetDatabase, task_1, userNiko } from "../../setup";
 
-beforeEach((done) => {
-  resetDatabase();
-  done();
+let validToken;
+
+beforeAll(async () => {
+  await api.post(`${Paths.AUTH}/singup`).send(userNiko);
+  const response = await api.post(`${Paths.AUTH}/login`).send({
+    email: userNiko.email,
+    password: userNiko.password,
+  });
+  validToken = response.body.token;
 });
 
-const uri = Paths.TASKS;
+beforeEach(async () => {
+  await resetDatabase();
+});
 
-describe(`DELETE ${uri} eliminación de tareas. - (Integration)`, () => {
-  it("Si la tarea a eliminar no existe la api retorna un código de estado 404.", async () => {
-    const idInexistente = "JDHGF-453278-GHAGAGA";
+describe.skip(`DELETE "${Paths.TASKS}" eliminación de tareas. - (Integration)`, () => {
+  it("La eliminación exitosa devuelve el ID y un status 202.", async () => {
+    const result = await api
+      .post(Paths.TASKS)
+      .send(task_1)
+      .set("Authorization", validToken)
+      .expect("Content-Type", /application\/json/);
+    const taskFound = result.body;
 
-    const response = await api.delete(`${uri}/${idInexistente}`);
+    const response = await api
+      .delete(`${Paths.TASKS}/${taskFound.id}`)
+      .set("Authorization", validToken)
+      .expect(202);
 
-    expect(response.status).toBe(404);
+    expect(response.body.id).toEqual(taskFound.id);
   });
 
-  it("Si la tarea a eliminar no existe la api retorna un mensaje de error.", async () => {
-    const idInexistente = "JDHGF-453278-GHAGAGA";
-
-    const response = await api.delete(`${uri}/${idInexistente}`);
+  it("Se intenta eliminar una tarea inexistente recibimos un mensaje de error y status 404.", async () => {
+    const id = "ffff-000-ffff";
+    const response = await api
+      .delete(`${Paths.TASKS}/${id}`)
+      .set("Authorization", validToken)
+      .expect(404);
 
     expect(response.body.message).toBeDefined();
   });
-
-  it("Al eliminar una tarea obtenemos un status 202.", async () => {
-    const result = await api.post(uri).send(task);
-    const id = result.body;
-
-    const response = await api.delete(`${uri}/${id}`);
-
-    expect(response.status).toBe(202);
-  });
-
-  it("Al eliminar una tarea correctamente obtenemos el ID.", async () => {
-    const result = await api.post(uri).send(task);
-    const id = result.body;
-
-    const response = await api.delete(`${uri}/${id}`);
-
-    expect(response.body).toBeDefined();
-    expect(response.body).toEqual(id);
-  });
 });
 
-afterAll((done) => {
-  resetDatabase();
-  done();
+afterAll(async () => {
+  await resetDatabase();
 });

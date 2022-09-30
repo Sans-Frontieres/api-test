@@ -4,9 +4,9 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
-  it("Cuando un usuario se loguea correctamente obtenemos success = true.", async () => {
-    await api.post(`${Paths.AUTH}/signup`).send({
+describe.skip(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
+  it("Cuando un usuario se loguea correctamente obtenemos un token.", async () => {
+    await api.post(`${Paths.AUTH}/singup`).send({
       username: "nikodev",
       email: "nikolas090189@gmail.com",
       password: "1234",
@@ -21,10 +21,10 @@ describe(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
       .expect("Content-Type", /application\/json/);
 
     expect(response.status).toBe(200);
-    expect(response.body.success).toBeTruthy();
+    expect(response.body.token).toBeTruthy();
   });
 
-  it("Cuando un usuario se loguea erroneamente obtenemos success = false.", async () => {
+  it("Cuando un usuario se loguea erroneamente recibimos un status 203 y un mensage de error.", async () => {
     await api.post(`${Paths.AUTH}/singup`).send({
       username: "nikodev",
       email: "nikolas090189@gmail.com",
@@ -40,10 +40,10 @@ describe(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
       .expect("Content-Type", /application\/json/);
 
     expect(response.status).toBe(203);
-    expect(response.body.success).toBeFalsy();
+    expect(response.body.message).toBeTruthy();
   });
 
-  it("Cuando el email del usuario no existe obtenemos success = false.", async () => {
+  it("Cuando el email del usuario no existe recibimos un status 203 y un mensage de error.", async () => {
     const response = await api
       .post(`${Paths.AUTH}/login`)
       .send({
@@ -53,7 +53,7 @@ describe(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
       .expect("Content-Type", /application\/json/);
 
     expect(response.status).toBe(203);
-    expect(response.body.success).toBeFalsy();
+    expect(response.body.message).toBeTruthy();
   });
 
   it("Si el esquema no pasa la validación de datos se recibirá status 422 y un error.", async () => {

@@ -1,4 +1,4 @@
-import { api, Paths } from "../setup";
+import { api, Paths } from "../../setup";
 
 const uri = Paths.ROOT;
 

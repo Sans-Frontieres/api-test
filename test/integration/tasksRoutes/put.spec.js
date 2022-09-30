@@ -1,65 +1,75 @@
-import { api, Paths, resetDatabase, task } from "../../setup";
+import { api, Paths, resetDatabase, task_1, userNiko } from "../../setup";
 
-beforeEach((done) => {
-  resetDatabase();
-  done();
+let validToken;
+
+beforeAll(async () => {
+  await api.post(`${Paths.AUTH}/singup`).send(userNiko);
+  const response = await api.post(`${Paths.AUTH}/login`).send({
+    email: userNiko.email,
+    password: userNiko.password,
+  });
+  validToken = response.body.token;
 });
 
-const uri = Paths.TASKS;
+beforeEach(async () => {
+  await resetDatabase();
+});
 
-describe(`PUT "${uri}/:id" actualización de tareas. - (Integration)`, () => {
-  it("Al actualizar correctamente una tarea recibimos un status 200.", async () => {
-    const result = await api.post(uri).send(task);
-
-    const response = await api
-      .put(`${uri}/${result.body}`)
-      .send({ title: "Titulo actualizado." });
-
-    expect(response.status).toBe(200);
-  });
-
-  it("Se actualiza el titulo de la tarea guardada.", async () => {
-    const task_1 = {
-      title: "Tarea a actiualizar",
-      description: "Esto es una descripción.",
-    };
-    const result = await api.post(uri).send(task_1);
-    const id = result.body;
-    const taskResult = await api.get(`${uri}/${id}`);
-
-    expect(taskResult.body.title).toEqual(task_1.title);
-
-    await api.put(`${uri}/${id}`).send({ title: "Titulo actualizado." });
-
-    const response = await api.get(`${uri}/${id}`);
-
-    expect(response.body.title).toEqual("Titulo actualizado.");
-  });
-
-  it("Al actualizar correctamente una tarea recibimos un ID.", async () => {
-    const result = await api.post(uri).send({
-      title: "Tarea a actiualizar",
-      description: "Esto es una descripción.",
-    });
+describe.skip(`PUT "${Paths.TASKS}/:id" actualización de tareas. - (Integration)`, () => {
+  it("La actualización exitosa de una tarea nos devuelve status 200.", async () => {
+    const result = await api
+      .post(Paths.TASKS)
+      .send(task_1)
+      .set("Authorization", validToken)
+      .expect("Content-Type", /application\/json/);
+    const taskFound = result.body;
 
     const response = await api
-      .put(`${uri}/${result.body}`)
-      .send({ title: "Titulo actualizado." });
+      .put(`${Paths.TASKS}/${taskFound.id}`)
+      .send({ title: "Titulo actualizado", description: "Nueva descripción." })
+      .set("Authorization", validToken)
+      .expect("Content-Type", /application\/json/)
+      .expect(200);
 
-    expect(response.body.id).toBeDefined();
+    expect(response.body.id).toEqual(taskFound.id);
   });
 
-  it("Se intenta actualizar una tarea inexistente, recibimos un status 404 y un message.", async () => {
+  it("Se intenta actualizar una tarea inexistente recibimos un mensaje de error y status 404.", async () => {
     const response = await api
-      .put(`${uri}/id-inexistente`)
-      .send({ title: "Titulo actualizado." });
+      .put(`${Paths.TASKS}/gghhh-1111-ffrff`)
+      .send({
+        title: "Un titulo",
+        description: "Esto no será tomado en cuenta.",
+      })
+      .set("Authorization", validToken)
+      .expect("Content-Type", /application\/json/)
+      .expect(404);
 
-    expect(response.status).toBe(404);
     expect(response.body.message).toBeDefined();
   });
+
+  it("Si el esquema no pasa la validación de datos se recibirá status 422 y un error.", async () => {
+    const result = await api
+      .post(Paths.TASKS)
+      .send(task_1)
+      .set("Authorization", validToken)
+      .expect("Content-Type", /application\/json/);
+    const taskFound = result.body;
+
+    const response = await api
+      .put(`${Paths.TASKS}/${taskFound.id}`)
+      .send({
+        title: "",
+        description: "Esta tarea no será actualizada por falta de datos.",
+      })
+      .set("Authorization", validToken)
+      .expect("Content-Type", /application\/json/);
+
+    expect(response.status).toBe(422);
+    expect(response.body.error).toBeDefined();
+  });
 });
 
-afterAll((done) => {
-  resetDatabase();
-  done();
+afterAll(async () => {
+  await resetDatabase();
 });

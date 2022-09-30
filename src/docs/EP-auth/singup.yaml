@@ -1,9 +1,9 @@
 # Endpoin para alta de usuario
 paths:
-  /auth/signup:
+  /auth/singup:
     post:
       summary: "Alta de usuarios"
-      operationId: "signUp"
+      operationId: "singUp"
       tags:
       - "Auth"
       requestBody:

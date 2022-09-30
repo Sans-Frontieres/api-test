@@ -27,11 +27,11 @@ paths:
               schema:
                 type: "object"
                 properties:
-                  success: 
-                    type: "boolean"
-                    description: "Responderá true si se ha logueado con éxito."
+                  token: 
+                    type: "string"
+                    description: "token para realizar consultas."
                 example:
-                  success: true
+                  token: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzZXIiOiJjMzA1MjczOS0yNjJkLTQ2ZDUtOGJjYy1iNjNhZTNjZGJkMWEiLCJpYXQiOjE2NjAyNTMxNTEsImV4cCI6MTY2MDI1Njc1MX0.UUDYbzmZsszuy0mC6wFIjHmgb8XAYcT4YdrXL9xjp18pa080tRUbDDgy2JgujT5sTqCHAEnGt60oWU7Yai9H53r3KUl-KB6nx7jjBSlkgTLEvqOjIca6OT0BPH4EbUy0wSozJk6DS2NlfzbehUnVgEqtXA1reUBpoMztDoB3tOY'
         203:
           description: Usuario creado con éxito
           content:

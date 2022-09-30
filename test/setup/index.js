@@ -10,4 +10,10 @@ const task = {
   description: "Tarea creada para los test de Mocha y Chai.",
 };
 
-export { api, Paths, resetDatabase, task };
+const userNiko = {
+  username: "nikodev",
+  email: "nikolas090189@gmail.com",
+  password: "miContraseña1234",
+};
+
+export { api, Paths, resetDatabase, task, userNiko };

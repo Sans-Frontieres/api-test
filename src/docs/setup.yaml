@@ -48,3 +48,4 @@ tags:
   description: "Creación y autenticación de usuarios."
 schemes:
 - "http"
+
