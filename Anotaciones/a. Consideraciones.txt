@@ -1,0 +1,70 @@
+-----------------  Consideraciones a tener en cuenta -------------------
+
+En cuanto a la documentación de swagger para poder tener acceso a la interfaz
+de Autorization debemos colocar en el setup.yaml
+
+        components:
+            securitySchemes:
+                bearerAuth:
+                type: http
+                scheme: bearer
+                bearerFormat: JWT
+        
+        ....... 
+
+        y en los end-point documentados
+
+        paths:
+            /tasks:      
+                post:
+                security:
+                    - bearerAuth: []
+        ..... 
+
+        Con esto ya lo tendriamos, tener en cuenta que por medio de tipo de schema 
+        se trabaja con Bearer Token.
+
+__________________________________--______________________________________________
+
+              ---------  Deploy de la API-REST  ---------
+
+Una de las ultimas implementaciones fue la de la clave RSA para generar el token de
+usuario y poder verificarlo más adelante para esto vamos a crear un directorio 
+en /etc/share/ca-certificates/     y vamos a colocar dos archivos
+
+        node_api.pem     y      node_api.pub.pem
+
+    si obtenemos problemas de acceso debemos asignar los permisos.
+
+Dentro iran las claves RSA generadas. 
+
+Ahora la manera de exportarlas es utilizando cat en el /environments 
+
+    $ sudo nano /etc/environment
+
+        export PRIVATE_KEY=`cat /usr/share/ca-certificates/node_api`
+        export PUBLIC_KEY=`cat /usr/share/ca-certificates/node_api.pub`
+
+    $ source /eyc/environment
+
+Ahora ya podemos hacer uso de esas dos variables. 
+
+
+
+
+- -- - - - - - - Una forma distinta  - - - - - - - - - - - - - 
+
+Podriamos crear un directorio en el Home de nuestro user 
+    $ mkdir certificates
+
+    node_api.pem     y      node_api.pub.pem
+
+y ahora lo que hariamos sería leer su contenido desde el código
+
+    // import path from "path";
+    // import fs from "fs";
+
+    // import private and public key
+    // const key = fs.readFileSync(path.join(process.env.HOME!, "./certificates/node_api.pem"));
+    // const cert = fs.readFileSync(path.join(process.env.HOME!, "./certificates/node_api.pub.pem"));
+

@@ -3,6 +3,12 @@ import { getConnection } from '../server/db';
 import { User } from '../interfaces/types';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+// import path from "path";
+// import fs from "fs";
+
+// import private and public key
+// const key = fs.readFileSync(path.join(process.env.HOME!, "./certificates/node_api.pem"));
+
 
 type SignUpParams = Omit<User, 'id'>
 
