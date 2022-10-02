@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "clean": "rimraf build .env.* db.* jest.config test coverage Anotaciones .gitignore",
     "dev:run": "NODE_ENV=development nodemon",
     "dev": " npm run dev:run --ignore db.json",
     "start": "NODE_ENV=staging node build/server/index.js",
@@ -29,6 +30,7 @@
     "joi": "^17.6.1",
     "jsonwebtoken": "^8.5.1",
     "lowdb": "1.0.0",
+    "rimraf": "^3.0.2",
     "swagger-jsdoc": "6.2.1",
     "swagger-ui-express": "^4.5.0",
     "ts-node": "^10.9.1",
