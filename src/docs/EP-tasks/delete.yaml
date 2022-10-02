@@ -2,6 +2,8 @@
 paths:
   /tasks/{id}:
     delete:
+      security:
+        - bearerAuth: []
       summary: "Eliminación de una tarea por ID."
       operationId: "remove"
       tags: 

@@ -10,11 +10,13 @@ const verify = (token: string) => jwt.verify(token, process.env.PUBLIC_KEY!) as 
 // Middleware encargado de verificar el token del user
 export const verifyToken: Handler = async (req, res, next) => {
     try {
-        const token = req.headers.authorization as string;
+        const authorization = req.headers.authorization as string;
 
-        if (!token) return res.status(403).json({ message: "No posee un token válido." });
+        if (!authorization) return res.status(403).json({ message: "No posee un token válido." });
 
-        const decoded = verify(token);
+        const token = authorization.split('Bearer ').pop()
+
+        const decoded = verify(token!);
 
         req.params.idUser = decoded.idUser
         next();

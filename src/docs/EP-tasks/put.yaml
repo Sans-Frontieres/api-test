@@ -2,6 +2,8 @@
 paths:
   /tasks/{id}:
     put:
+      security:
+        - bearerAuth: []
       summary: "Actualización de una tarea por ID."
       operationId: "update"
       tags:

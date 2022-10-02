@@ -2,6 +2,8 @@
 paths:
   /tasks:      
     post:
+      security:
+        - bearerAuth: []
       summary: "Creación de una nueva tarea."
       operationId: "create"
       tags:
@@ -16,7 +18,7 @@ paths:
              type: "object"
              properties:
               title: 
-                example: "Titulo de ejemplo de una tarea creada desde swagger ui."
+                example: "Titulo de ejemplo."
               description:
                 example: "Descripción de la tarea a crear."
       responses:
