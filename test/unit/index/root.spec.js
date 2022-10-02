@@ -2,7 +2,7 @@ import { api, Paths } from "../../setup";
 
 const uri = Paths.ROOT;
 
-describe.skip(`Prueba básica de la API-REST ruta ${uri}. - (Unitary)`, () => {
+describe(`Prueba básica de la API-REST ruta ${uri}. - (Unitary)`, () => {
   it("La api retorna un código de estado 200.", async () => {
     const response = await api.get(uri);
 

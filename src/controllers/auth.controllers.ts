@@ -22,7 +22,7 @@ export const login: Handler = async (req, res) => {
 
         if (!token) return res.status(203).json({ error: 'Las credenciales son erroneas.' })
 
-        res.status(200).json({ token })
+        res.status(200).json(token)
     } catch (error: any) {
         res.status(444).json({ error: error.message })
         throw new Error('Error de servidor - ' + error.message)

@@ -1,16 +1,11 @@
-import { User } from "../../../src/model";
-import { app, resetDatabase } from "../../setup";
+import { app, User, resetDatabase } from "../../setup";
 
 beforeAll((done) => {
   app;
   done();
 });
 
-beforeEach(async () => {
-  await resetDatabase();
-});
-
-describe.skip("Alta de usuario. - (Unitario) -", () => {
+describe("Alta de usuario. - (Unitario) -", () => {
   it("Creación de un nuevo usuario devuelve el id.", async () => {
     const newUser = {
       username: "nikodev",

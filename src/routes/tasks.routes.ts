@@ -8,11 +8,10 @@ router.get("/", controller.getAll);
 router.get("/count", controller.count);
 router.get("/:id", controller.findByID);
 
-router.delete("/:id", verifyToken, controller.remove);
-
 router.post("/", [taskValidators.create, verifyToken], controller.create);
 
 router.put("/:id", [taskValidators.update, verifyToken], controller.update);
 
+router.delete("/:id", verifyToken, controller.remove);
 
 export default router;

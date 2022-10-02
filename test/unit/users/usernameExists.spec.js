@@ -1,5 +1,4 @@
-import { User } from "../../../src/model";
-import { app, resetDatabase } from "../../setup";
+import { app, User, resetDatabase } from "../../setup";
 
 beforeAll((done) => {
   app;
@@ -10,7 +9,7 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe.skip("Existencia de username en el alta de un usuario. - (Unitario) -", () => {
+describe("Existencia de username en el alta de un usuario. - (Unitario) -", () => {
   it("Existencia de un usuername en el sistema retorna true.", async () => {
     const newUser = {
       username: "nikodev",

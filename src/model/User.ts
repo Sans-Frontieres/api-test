@@ -65,7 +65,8 @@ export const usernameExists = async (username: string) => {
 
     const user = await db.get('users').find({ username }).value()
 
-    return user ? true : false
+    // return user ? true : false // remplazamos por la forma corta
+    return !!user
 }
 
 
@@ -74,6 +75,6 @@ export const emailExists = async (email: string) => {
 
     const user = await db.get('users').find({ email }).value()
 
-    return user ? true : false
+    return !!user
 }
 

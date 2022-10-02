@@ -1,5 +1,6 @@
 import supertest from "supertest";
 import app from "../../src/server/app";
+import { User } from "../../src/model";
 import { resetDatabase } from "../../src/server/db";
 import { Paths } from "../../src/routes";
 
@@ -16,4 +17,4 @@ const userNiko = {
   password: "miContraseña1234",
 };
 
-export { api, Paths, resetDatabase, task, userNiko };
+export { api, Paths, User, resetDatabase, task, userNiko };

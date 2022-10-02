@@ -1,9 +1,9 @@
-import { api, Paths, resetDatabase, task_1, userNiko } from "../../setup";
+import { api, Paths, resetDatabase, task, userNiko } from "../../setup";
 
 let validToken;
 
 beforeAll(async () => {
-  await api.post(`${Paths.AUTH}/singup`).send(userNiko);
+  await api.post(`${Paths.AUTH}/signup`).send(userNiko);
   const response = await api.post(`${Paths.AUTH}/login`).send({
     email: userNiko.email,
     password: userNiko.password,
@@ -15,23 +15,22 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe.skip(`POST "${Paths.TASKS}" inserción de nuevas tareas. - (Integration)`, () => {
+describe(`POST "${Paths.TASKS}" inserción de nuevas tareas. - (Integration)`, () => {
   it("La creación exitosa de una tarea nos devuelve status 200.", async () => {
     const response = await api
       .post(Paths.TASKS)
-      .send(task_1)
-      .set("Authorization", validToken)
+      .send(task)
+      .set("authorization", validToken)
       .expect("Content-Type", /application\/json/);
 
     expect(response.status).toBe(201);
-    expect(response.body.id).toBeDefined();
   });
 
   it("Creación exitosa recibimos el ID de la tarea y el ID del usuario autor.", async () => {
     const response = await api
       .post(Paths.TASKS)
-      .send(task_1)
-      .set("Authorization", validToken)
+      .send(task)
+      .set("authorization", validToken)
       .expect("Content-Type", /application\/json/);
 
     expect(response.body.id).toBeDefined();
@@ -45,7 +44,7 @@ describe.skip(`POST "${Paths.TASKS}" inserción de nuevas tareas. - (Integration
         title: "",
         description: "Esta tarea no sera creada por falta de datos.",
       })
-      .set("Authorization", validToken)
+      .set("authorization", validToken)
       .expect("Content-Type", /application\/json/);
 
     expect(response.status).toBe(422);

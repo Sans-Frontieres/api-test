@@ -2,52 +2,79 @@ import { Handler } from "express";
 import { Task } from "../model";
 
 export const getAll: Handler = async (__, res) => {
-  const { tasks, count } = await Task.all();
-  res.status(200).json({ tasks, count });
+  try {
+    const { tasks, count } = await Task.all();
+    res.status(200).json({ tasks, count });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const count: Handler = async (__, res) => {
-  const count = await Task.count();
-  res.json({ count });
+  try {
+    const count = await Task.count();
+    res.json({ count });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const findByID: Handler = async (req, res) => {
-  const id = req.params.id;
+  try {
+    const task = await Task.findByID(req.params.id);
 
-  const task = await Task.findByID(id);
+    if (task) return res.json(task);
 
-  if (!task) return res.status(404).json({ message: "Tarea no encontrada." });
-
-  res.status(200).json(task);
+    res.status(404).json({ message: "No se encontro la tarea." });
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 export const create: Handler = async (req, res) => {
-  const { title, description } = req.body;
+  try {
+    const idUser = req.params.idUser
 
-  const id = await Task.create(title, description);
+    delete req.params.idUser
 
-  res.status(201).json(id);
+    const { title, description } = req.body;
+
+    const id = await Task.create(title, description);
+
+    res.status(201).json({ id, idUser });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const update: Handler = async (req, res) => {
-  const id = req.params.id;
-  const { title, description } = req.body;
+  try {
+    const idUser = req.params.idUser
+    delete req.params.idUser
 
-  const idTask = await Task.update(id, title, description);
+    const { title, description } = req.body;
 
-  if (!idTask)
-    return res.status(404).json({ message: "La tarea no fue encontrada." });
+    const id = await Task.update(req.params.id, title, description);
 
-  res.status(200).json({ id: idTask });
+    if (id) return res.json({ id, idUser });
+
+    res.status(404).json({ message: "No se encontro la tarea." });
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 export const remove: Handler = async (req, res) => {
-  const id = req.params.id;
+  try {
+    const idUser = req.params.idUser
+    delete req.params.idUser
 
-  const idTask = await Task.remove(id);
+    const id = await Task.remove(req.params.id);
 
-  if (!idTask)
-    return res.status(404).json({ message: "La tarea no fue encontrada." });
+    if (id) return res.status(202).json({ id, idUser });
 
-  res.status(202).json(idTask);
+    res.status(404).json({ message: "No se encontro la tarea." });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 };

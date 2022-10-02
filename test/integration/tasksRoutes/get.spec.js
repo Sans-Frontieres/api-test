@@ -1,9 +1,9 @@
-import { api, Paths, resetDatabase, task_1, userNiko } from "../../setup";
+import { api, Paths, resetDatabase, task, userNiko } from "../../setup";
 
 let validToken;
 
 beforeAll(async () => {
-  await api.post(`${Paths.AUTH}/singup`).send(userNiko);
+  await api.post(`${Paths.AUTH}/signup`).send(userNiko);
   const response = await api.post(`${Paths.AUTH}/login`).send({
     email: userNiko.email,
     password: userNiko.password,
@@ -15,7 +15,7 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe.skip(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integration)`, () => {
+describe(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integration)`, () => {
   it("No hay tareas almacenadaas, el servicio nos retorna status 200.", async () => {
     const response = await api.get(Paths.TASKS);
 
@@ -25,7 +25,7 @@ describe.skip(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integratio
   });
 
   it("El endpoint devuelve las tareas almacenadas y un status 200.", async () => {
-    await api.post(Paths.TASKS).send(task_1).set("Authorization", validToken);
+    await api.post(Paths.TASKS).send(task).set("Authorization", validToken);
 
     const response = await api.get(Paths.TASKS);
 
@@ -35,12 +35,12 @@ describe.skip(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integratio
   });
 });
 
-describe.skip(`GET "${Paths.TASKS}/count" catidad de tareas almacenadas. - (Integration)`, () => {
+describe(`GET "${Paths.TASKS}/count" catidad de tareas almacenadas. - (Integration)`, () => {
   it("El endpoint nos devuelve la cantidad de tareas almacenadas y status 200.", async () => {
     let response = await api.get(`${Paths.TASKS}/count`);
     expect(response.body.count).toEqual(0);
 
-    await api.post(Paths.TASKS).set("Authorization", validToken).send(task_1);
+    await api.post(Paths.TASKS).set("Authorization", validToken).send(task);
 
     response = await api.get(`${Paths.TASKS}/count`);
 
@@ -49,12 +49,12 @@ describe.skip(`GET "${Paths.TASKS}/count" catidad de tareas almacenadas. - (Inte
   });
 });
 
-describe.skip(`GET "${Paths.TASKS}/:id" Busqueda de tareas por id. - (Integration)`, () => {
+describe(`GET "${Paths.TASKS}/:id" Busqueda de tareas por id. - (Integration)`, () => {
   it("Busqueda exitosa de una tarea, obtenemos la tarea y un status 200", async () => {
     const result = await api
       .post(Paths.TASKS)
       .set("Authorization", validToken)
-      .send(task_1);
+      .send(task);
     const id = result.body.id;
 
     const response = await api.get(`${Paths.TASKS}/${id}`);
