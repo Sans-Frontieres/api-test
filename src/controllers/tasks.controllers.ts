@@ -1,5 +1,5 @@
 import { Handler } from "express";
-import { Task } from "../model";
+import { Task } from "../models";
 
 export const getAll: Handler = async (__, res) => {
   try {

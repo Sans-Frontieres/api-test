@@ -1,9 +1,5 @@
 import jwt from 'jsonwebtoken'
 import { Handler } from 'express';
-// import path from "path";
-// import fs from "fs";
-
-// const cert = fs.readFileSync(path.join(process.env.HOME!, "./certificates/node_api.pub.pem"));
 
 interface JwtPayload {
     idUser: string

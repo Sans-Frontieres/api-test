@@ -1,3 +1,4 @@
+import Roles from "../enum"
 
 export interface Task {
     id: string,
@@ -9,5 +10,6 @@ export interface User {
     id: string,
     username: string,
     email: string,
-    password: string
+    password: string,
+    roles: Roles[]
 }

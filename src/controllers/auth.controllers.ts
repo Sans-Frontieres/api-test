@@ -1,5 +1,5 @@
 import { Handler } from 'express';
-import { User } from '../model';
+import { User } from '../models';
 
 export const signUp: Handler = async (req, res) => {
     try {

@@ -1,5 +1,5 @@
 import { Handler } from "express";
-import { User } from '../model';
+import { User } from '../models';
 
 // verifica que el username y/o email no se duplique
 export const uniqueEmail: Handler = async (req, res, next) => {

@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import { getConnection } from "../server/db";
+import { getConnection } from "../server/database";
 
 export const all = async () => {
   const tasks = await getConnection().get("tasks").value();

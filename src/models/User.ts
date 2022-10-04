@@ -1,16 +1,11 @@
 import { v4 } from "uuid";
-import { getConnection } from '../server/db';
+import { getConnection } from '../server/database';
 import { User } from '../interfaces/types';
+import Roles from '../enum';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-// import path from "path";
-// import fs from "fs";
 
-// import private and public key
-// const key = fs.readFileSync(path.join(process.env.HOME!, "./certificates/node_api.pem"));
-
-
-type SignUpParams = Omit<User, 'id'>
+type SignUpParams = Omit<User, 'id' | 'roles'>
 
 type SignUp = (params: SignUpParams) => Promise<{ id: string }>
 
@@ -36,11 +31,12 @@ const sign = (payload: { idUser: string }) => {
 }
 
 export const signUp: SignUp = async ({ username, email, password }) => {
-    const newUser = {
+    const newUser: User = {
         id: v4(),
         username,
         email,
-        password: await encrypt(password)
+        password: await encrypt(password),
+        roles: [Roles.USER]
     }
 
     await getConnection().get('users').push(newUser).write()
@@ -71,7 +67,6 @@ export const usernameExists = async (username: string) => {
 
     const user = await db.get('users').find({ username }).value()
 
-    // return user ? true : false // remplazamos por la forma corta
     return !!user
 }
 
@@ -84,3 +79,52 @@ export const emailExists = async (email: string) => {
     return !!user
 }
 
+/* ----------  Metodos nuevos ................ */
+
+export const findByID = async (id: string) => {
+    const db = await getConnection();
+    const user = await db.get('users').find({ id }).value()
+    return user;
+}
+
+export const all = async () => {
+    const db = await getConnection()
+    const users = await db.get('users').value()
+    return users
+}
+
+export const estimatedDocumentCount = async () => {
+    const users = await all()
+    return users.length
+}
+
+export const hasRole = (user: User, aRole: Roles) => {
+    return user.roles.includes(aRole)
+}
+
+
+type BlockFunction = (user: User, aRole: Roles) => Array<Roles>
+type ChangeRole = (userId: string, aRole: Roles, callback: BlockFunction) => Promise<boolean>
+
+const changeRole: ChangeRole = async (userId, aRole, callback) => {
+    const user = await getConnection().get('users').find({ id: userId }).value()
+
+    if (!user) return false
+
+    const roles = callback(user, aRole)
+
+    await getConnection().get('users').find({ id: userId }).assign({ roles }).write()
+
+    return true
+}
+
+export const addRole = async (userId: string, aRole: number) => {
+    return changeRole(userId, aRole, (user, aRole) => [...user.roles, aRole])
+}
+
+export const popRole = async (userId: string, aRole: number) => {
+    const callback: BlockFunction = (user, aRole) =>
+        user.roles.filter(role => role != aRole)
+
+    return changeRole(userId, aRole, callback)
+}
