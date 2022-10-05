@@ -1,8 +1,9 @@
 import supertest from "supertest";
 import app from "../../src/server/app";
-import { User } from "../../src/model";
-import { resetDatabase } from "../../src/server/db";
+import { User } from "../../src/models";
+import { resetDatabase } from "../../src/server/database";
 import { Paths } from "../../src/routes";
+import Roles from "../../src/enum";
 
 const api = supertest(app);
 
@@ -17,4 +18,4 @@ const userNiko = {
   password: "miContraseña1234",
 };
 
-export { api, Paths, User, resetDatabase, task, userNiko };
+export { api, Paths, User, resetDatabase, task, userNiko, Roles };
