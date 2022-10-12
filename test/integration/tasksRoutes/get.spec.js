@@ -1,18 +1,18 @@
 import { api, Paths, resetDatabase, task, userNiko } from "../../setup";
 
-let validToken;
+let token;
 
-beforeAll(async () => {
-  await api.post(`${Paths.AUTH}/signup`).send(userNiko);
+beforeEach(async () => {
+  await resetDatabase();
+
+  await api.post(`${Paths.AUTH}/singup`).send(userNiko);
+
   const response = await api.post(`${Paths.AUTH}/login`).send({
     email: userNiko.email,
     password: userNiko.password,
   });
-  validToken = response.body.token;
-});
 
-beforeEach(async () => {
-  await resetDatabase();
+  token = response.body.token;
 });
 
 describe(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integration)`, () => {
@@ -25,7 +25,7 @@ describe(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integration)`, 
   });
 
   it("El endpoint devuelve las tareas almacenadas y un status 200.", async () => {
-    await api.post(Paths.TASKS).send(task).set("Authorization", validToken);
+    await api.post(Paths.TASKS).send(task).set("Authorization", token);
 
     const response = await api.get(Paths.TASKS);
 
@@ -40,7 +40,7 @@ describe(`GET "${Paths.TASKS}/count" catidad de tareas almacenadas. - (Integrati
     let response = await api.get(`${Paths.TASKS}/count`);
     expect(response.body.count).toEqual(0);
 
-    await api.post(Paths.TASKS).set("Authorization", validToken).send(task);
+    await api.post(Paths.TASKS).set("Authorization", token).send(task);
 
     response = await api.get(`${Paths.TASKS}/count`);
 
@@ -53,7 +53,7 @@ describe(`GET "${Paths.TASKS}/:id" Busqueda de tareas por id. - (Integration)`, 
   it("Busqueda exitosa de una tarea, obtenemos la tarea y un status 200", async () => {
     const result = await api
       .post(Paths.TASKS)
-      .set("Authorization", validToken)
+      .set("Authorization", token)
       .send(task);
     const id = result.body.id;
 

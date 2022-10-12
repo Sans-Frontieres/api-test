@@ -39,7 +39,7 @@ export const create: Handler = async (req, res) => {
 
     const { title, description } = req.body;
 
-    const id = await Task.create(title, description);
+    const id = await Task.create(title, description, idUser);
 
     res.status(201).json({ id, idUser });
   } catch (error: any) {

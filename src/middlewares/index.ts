@@ -1,4 +1,4 @@
-export { verifyToken } from './authorization';
+export { verifyToken, isAuthor, isAdmin, isModerator, isAdminOrModerator, hasPrivileges } from './authorization';
 export { uniqueEmail } from './uniqueEmail'
 
 export * as taskValidators from './validators/tasks.validations'

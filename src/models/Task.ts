@@ -1,4 +1,5 @@
 import { v4 } from "uuid";
+import { TaskProps } from "../interfaces/types";
 import { getConnection } from "../server/database";
 
 export const all = async () => {
@@ -16,13 +17,16 @@ export const findByID = async (id: string) => {
   return task;
 };
 
-export const create = async (title: string, description: string) => {
-  const newTask = {
+export const create = async (title: string, description: string, author_id: string) => {
+  const newTask: TaskProps = {
     id: v4(),
     title,
     description,
+    author_id
   };
+
   const db = await getConnection();
+
   await db.get("tasks").push(newTask).write();
 
   return newTask.id;
@@ -50,3 +54,8 @@ export const remove = async (id: string) => {
 
   return id;
 };
+
+export const isAuthor = async (userId: string, taskId: string) => {
+  const task = await findByID(taskId)
+  return task.author_id === userId
+}

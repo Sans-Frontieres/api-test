@@ -1,15 +1,15 @@
 import { v4 } from "uuid";
 import { getConnection } from '../server/database';
-import { User } from '../interfaces/types';
+import { UserProps } from '../interfaces/types';
 import Roles from '../enum';
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-type SignUpParams = Omit<User, 'id' | 'roles'>
+type CreateParams = Omit<UserProps, 'id' | 'roles'>
 
-type SignUp = (params: SignUpParams) => Promise<{ id: string }>
+type Create = (params: CreateParams) => Promise<string>
 
-type LoginParams = Omit<SignUpParams, 'username'>
+type LoginParams = Omit<CreateParams, 'username'>
 
 type Login = (params: LoginParams) => Promise<{ token: string } | undefined>
 
@@ -30,8 +30,8 @@ const sign = (payload: { idUser: string }) => {
         { expiresIn: "5m", algorithm: "RS256" })
 }
 
-export const signUp: SignUp = async ({ username, email, password }) => {
-    const newUser: User = {
+export const create: Create = async ({ username, email, password }) => {
+    const newUser: UserProps = {
         id: v4(),
         username,
         email,
@@ -41,13 +41,13 @@ export const signUp: SignUp = async ({ username, email, password }) => {
 
     await getConnection().get('users').push(newUser).write()
 
-    return { id: newUser.id }
+    return newUser.id
 }
 
 
 export const login: Login = async ({ email, password }) => {
     const db = await getConnection()
-    const user: User = await db.get('users').find({ email }).value()
+    const user: UserProps = await db.get('users').find({ email }).value()
 
     if (!user) return
 
@@ -98,12 +98,21 @@ export const estimatedDocumentCount = async () => {
     return users.length
 }
 
-export const hasRole = (user: User, aRole: Roles) => {
-    return user.roles.includes(aRole)
+
+
+
+
+export const hasRole = async (userId: string, role: Roles) => {
+    const user = await findByID(userId)
+    return user.roles.includes(role)
 }
 
 
-type BlockFunction = (user: User, aRole: Roles) => Array<Roles>
+
+
+
+
+type BlockFunction = (user: UserProps, aRole: Roles) => Array<Roles>
 type ChangeRole = (userId: string, aRole: Roles, callback: BlockFunction) => Promise<boolean>
 
 const changeRole: ChangeRole = async (userId, aRole, callback) => {

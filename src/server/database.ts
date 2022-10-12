@@ -1,10 +1,10 @@
 import lowdb from "lowdb";
 import FileSync from "lowdb/adapters/FileSync";
-import { Task, User } from "../interfaces/types";
+import { TaskProps, UserProps } from "../interfaces/types";
 
 type Schema = {
-  users: User[],
-  tasks: Task[]
+  users: UserProps[],
+  tasks: TaskProps[]
 }
 
 let db: lowdb.LowdbSync<Schema>;

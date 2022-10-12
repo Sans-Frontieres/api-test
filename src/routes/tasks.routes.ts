@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { tasksController as controller } from "../controllers";
-import { taskValidators, verifyToken } from "../middlewares";
+import { taskValidators, verifyToken, hasPrivileges } from "../middlewares";
 
 const router = Router();
 
@@ -10,8 +10,9 @@ router.get("/:id", controller.findByID);
 
 router.post("/", [taskValidators.create, verifyToken], controller.create);
 
-router.put("/:id", [taskValidators.update, verifyToken], controller.update);
 
-router.delete("/:id", verifyToken, controller.remove);
+router.put("/:id", [verifyToken, hasPrivileges, taskValidators.update], controller.update);
+
+router.delete("/:id", [verifyToken, hasPrivileges], controller.remove);
 
 export default router;
