@@ -7,7 +7,7 @@ beforeEach(async () => {
   token = await jwtAdmin();
 });
 
-describe(`GET "${Paths.USERS}" busqueda de usuarios. - (Integration)`, () => {
+describe.skip(`GET "${Paths.USERS}" busqueda de usuarios. - (Integration)`, () => {
   it("No hay usuarios almacenadaas recibimos un status 200 y un array vacio.", async () => {
     const response = await api.get(Paths.USERS).set("authorization", token);
 

@@ -16,7 +16,7 @@ beforeEach(async () => {
   token = await jwtAdmin();
 });
 
-describe(`PUT "${Paths.USERS}" actualización de roles de usuarios. - (Integration)`, () => {
+describe.skip(`PUT "${Paths.USERS}" actualización de roles de usuarios. - (Integration)`, () => {
   it("Se agrega el rol de admin a un user.", async () => {
     const response = await api.post(`${Paths.AUTH}/singup`).send(userNiko);
 

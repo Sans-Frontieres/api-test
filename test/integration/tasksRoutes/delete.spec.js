@@ -15,7 +15,7 @@ beforeEach(async () => {
   token = response.body.token;
 });
 
-describe(`DELETE "${Paths.TASKS}" eliminación de tareas. - (Integration)`, () => {
+describe.skip(`DELETE "${Paths.TASKS}" eliminación de tareas. - (Integration)`, () => {
   it("La eliminación exitosa devuelve el ID y un status 202.", async () => {
     const result = await api
       .post(Paths.TASKS)

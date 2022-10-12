@@ -15,7 +15,7 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe(`PUT "${Paths.TASKS}/:id" actualización de tareas. - (Integration)`, () => {
+describe.skip(`PUT "${Paths.TASKS}/:id" actualización de tareas. - (Integration)`, () => {
   it("La actualización exitosa de una tarea nos devuelve status 200 y el ID del usuario que actualizo.", async () => {
     const result = await api
       .post(Paths.TASKS)

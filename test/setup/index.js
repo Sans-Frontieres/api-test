@@ -68,4 +68,5 @@ export {
   resetDatabase,
   task,
   userNiko,
+  User,
 };

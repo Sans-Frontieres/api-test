@@ -4,7 +4,7 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () => {
+describe.skip(`POST "${Paths.AUTH}" alta de un nuevo usuario. - (Integration)`, () => {
   it("Cuando se de alta correctamente un usuario obtenemos el id como respuesta.", async () => {
     const response = await api
       .post(`${Paths.AUTH}/signup`)

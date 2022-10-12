@@ -4,7 +4,7 @@ beforeEach(async () => {
   await resetDatabase();
 });
 
-describe(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
+describe.skip(`POST "${Paths.AUTH}" login de un usuario. - (Integration)`, () => {
   it("Cuando un usuario se loguea correctamente obtenemos un token.", async () => {
     await api.post(`${Paths.AUTH}/signup`).send({
       username: "nikodev",

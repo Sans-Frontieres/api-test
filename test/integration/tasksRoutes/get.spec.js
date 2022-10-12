@@ -15,7 +15,7 @@ beforeEach(async () => {
   token = response.body.token;
 });
 
-describe(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integration)`, () => {
+describe.skip(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integration)`, () => {
   it("No hay tareas almacenadaas, el servicio nos retorna status 200.", async () => {
     const response = await api.get(Paths.TASKS);
 
@@ -35,7 +35,7 @@ describe(`GET "${Paths.TASKS}" busqueda de tareas existentes. - (Integration)`, 
   });
 });
 
-describe(`GET "${Paths.TASKS}/count" catidad de tareas almacenadas. - (Integration)`, () => {
+describe.skip(`GET "${Paths.TASKS}/count" catidad de tareas almacenadas. - (Integration)`, () => {
   it("El endpoint nos devuelve la cantidad de tareas almacenadas y status 200.", async () => {
     let response = await api.get(`${Paths.TASKS}/count`);
     expect(response.body.count).toEqual(0);
@@ -49,7 +49,7 @@ describe(`GET "${Paths.TASKS}/count" catidad de tareas almacenadas. - (Integrati
   });
 });
 
-describe(`GET "${Paths.TASKS}/:id" Busqueda de tareas por id. - (Integration)`, () => {
+describe.skip(`GET "${Paths.TASKS}/:id" Busqueda de tareas por id. - (Integration)`, () => {
   it("Busqueda exitosa de una tarea, obtenemos la tarea y un status 200", async () => {
     const result = await api
       .post(Paths.TASKS)

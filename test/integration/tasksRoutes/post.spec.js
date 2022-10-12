@@ -15,7 +15,7 @@ beforeEach(async () => {
   token = response.body.token;
 });
 
-describe(`POST "${Paths.TASKS}" inserción de nuevas tareas. - (Integration)`, () => {
+describe.skip(`POST "${Paths.TASKS}" inserción de nuevas tareas. - (Integration)`, () => {
   it("La creación exitosa de una tarea nos devuelve status 201.", async () => {
     const response = await api
       .post(Paths.TASKS)
